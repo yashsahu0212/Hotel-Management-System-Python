@@ -57,3 +57,30 @@ Follow this workflow to verify the logic of the system:
     * Now, Room `101` should be available for booking again.
 
 ##  Screenshots
+ * Main Dashboard
+<img width="529" height="256" alt="Image" src="https://github.com/user-attachments/assets/45e99682-a403-48f1-9d71-b95de00fd143" />
+
+ * Status Log
+   
+<img width="724" height="421" alt="Image" src="https://github.com/user-attachments/assets/eb4ba504-5f51-4df5-b90b-69c49cf2ad1a" />
+
+ * Check-in
+
+<img width="1160" height="570" alt="Image" src="https://github.com/user-attachments/assets/a770b1ae-7db9-469d-bd7e-6ee019f31042" />
+
+* Check-out
+
+<img width="644" height="528" alt="Image" src="https://github.com/user-attachments/assets/cab2603b-3eca-4a32-9289-b80b86e4d365" />
+
+* House keeping 
+
+<img width="583" height="312" alt="Image" src="https://github.com/user-attachments/assets/5d5b6fa4-cfae-4ea8-8c7d-564865276c5b" />
+
+* Search Room
+
+<img width="644" height="464" alt="Image" src="https://github.com/user-attachments/assets/c5d5eea0-2c12-4614-89b6-ceffb6d59b57" />
+
+
+
+
+
