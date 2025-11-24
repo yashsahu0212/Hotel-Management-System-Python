@@ -3,29 +3,29 @@ hotel = {}
 #Defining room types per floor using Tuple
 floor_types = (
     "Unknown", 
-    "1 Bedded Non-AC", # on 1st Floor 
-    "1 Bedded AC",     # on 2nd Floor 
-    "3 Bedded AC",     # on 3rd Floor 
-    "2 Bedded Non-AC", # on 4th Floor 
-    "2 Bedded AC"      # on 5th Floor
+    "1 bedded Non-AC", # on 1st Floor 
+    "1 bedded AC",     # on 2nd Floor 
+    "3 bedded AC",     # on 3rd Floor 
+    "2 bedded Non-AC", # on 4th Floor 
+    "2 bedded AC"      # on 5th Floor
 )
 
-#Prices per day for each room type 
+#Prices per day for  room  
 room_prices = {
-    "1 Bedded Non-AC": 1000,
-    "1 Bedded AC": 2000,
-    "3 Bedded AC": 4500,
-    "2 Bedded Non-AC": 2500,
-    "2 Bedded AC": 3500
+    "1 bedded Non-AC": 1000,
+    "1 bedded AC": 2000,
+    "3 bedded AC": 4500,
+    "2 bedded Non-AC": 2500,
+    "2 bedded AC": 3500
 }
 
-#using loops for room no. on each floor
+# loops for room no. on each floor
 for floor in range(1, 6):
     for r in range(1, 16):
         room_num = (floor * 100) + r
         r_type = floor_types[floor]
         
-        # to know weather room is clean or dirty
+        # to know  room is clean or dirty
         hotel[room_num] = {
             "type": r_type,
             "status": "Empty",       
@@ -33,38 +33,38 @@ for floor in range(1, 6):
             "guest": {}              
         }
 
-# function for knowing checkin/checkout status
+#  for knowing checkin/checkout status
 
 def view_stats():
     print("\n--- HOTEL STATUS LOG ---")
-    total_rooms = 75
-    occupied_count = 0
-    empty_count = 0
-    dirty_count = 0
-    clean_count = 0
+    totalrooms = 75
+    occupiedcount = 0
+    emptycount = 0
+    dirtycount = 0
+    cleancount = 0
 
     for room_num in hotel:
         details = hotel[room_num]
         if details["status"] == "Occupied":
             occupied_count += 1
         else:
-            empty_count += 1
+            emptycount += 1
             
         if details["cleanliness"] == "Dirty":
-            dirty_count += 1
+            dirtycount += 1
         else:
-            clean_count += 1
+            cleancount += 1
 
-    print(f"Total Rooms: {total_rooms}")
-    print(f"1. Full Rooms:  {occupied_count}")
-    print(f"2. Empty Rooms: {empty_count}")
+    print(f"Total Rooms: {totalrooms}")
+    print(f"1. full Rooms:  {occupiedcount}")
+    print(f"2. empty Rooms: {emptycount}")
     print("------------------------")
-    print(f"3. Clean Rooms: {clean_count}")
-    print(f"4. Dirty Rooms: {dirty_count}")
+    print(f"3. clean Rooms: {cleancount}")
+    print(f"4. dirty Rooms: {dirtycount}")
     print("------------------------")
 
 def check_in():
-    print("\n--- CHECK-IN NEW GUEST ---")
+    print("\n--- CHECK-IN  NEW GUEST ---")
     # Display rates for information
     print("Rates per day:")
     for r_type, price in room_prices.items():
@@ -73,10 +73,10 @@ def check_in():
     try:
         pref_floor = int(input("\nEnter preferred floor (1-5): "))
         if pref_floor < 1 or pref_floor > 5:
-            print("Invalid floor number.")
+            print("invalid floor number.")
             return
     except ValueError:
-        print("Please enter a number.")
+        print("please enter a number.")
         return
 
     available_rooms = []
@@ -91,28 +91,28 @@ def check_in():
     if len(available_rooms) == 0:
         print("No clean rooms available on this floor.")
     else:
-        print(f"Available Rooms: {available_rooms}")
+        print(f"available Rooms: {available_rooms}")
         try:
-            room_choice = int(input("Select Room Number: "))
+            room_choice = int(input("select room number: "))
             if room_choice in available_rooms:
                 
                 # --- Name validation ---
                 while True:
-                    name = input("Enter Guest Name: ").strip()
+                    name = input("enter guest name: ").strip()
                     #To check if any character in the name is a digit
                     if not any(char.isdigit() for char in name):
                         break
                     else:
-                        print("Error: Name cannot contain numbers. Please re-enter.")
+                        print("Error: name can not contain numbers. please re-enter.")
 
                 # --- Phone number validation ---
                 while True:
-                    phone = input("Enter Phone Number (10+ digits): ").strip()
+                    phone = input("enter phone number (10+ digits): ").strip()
                     # Check if all characters are digits and the length is = 10
                     if phone.isdigit() and len(phone) == 10:
                         break
                     else:
-                        print("Error: Phone number must be 10 digits and contain only numbers. Please re-enter.")
+                        print("error: phone number must be 10 digits and contain only numbers. please re-enter.")
                 
                 address = input("Enter Address: ")
                 
@@ -129,7 +129,7 @@ def check_in():
             print("Invalid input.")
 
 def check_out():
-    print("\n--- CHECK-OUT & BILLING ---")
+    print("\n- chech-out & billing -")
     try:
         room_num = int(input("Enter Room Number to checkout: "))
         
@@ -152,85 +152,98 @@ def check_out():
                     rate = room_prices[r_type]
                     total_bill = rate * days
                     
-                    print("-----------------------------")
+                    print()
+
+
                     print(f"Rate per day:  Rs. {rate}")
                     print(f"Days Stayed:   {days}")
                     print(f"TOTAL BILL:    Rs. {total_bill}")
-                    print("-----------------------------")
+                    print()
                     
                     confirm = input("Confirm Payment and Checkout? (yes or no): ")
                     if confirm.lower() == 'yes':
                         # Update Room Status
                         hotel[room_num]["status"] = "Empty"
-                        hotel[room_num]["cleanliness"] = "Dirty" # Marked dirty
+                        hotel[room_num]["cleanliness"] = "Dirty" 
                         hotel[room_num]["guest"] = {} 
-                        print("Checkout Complete. Room marked as DIRTY.")
+                        print("checkout complete. room marked as DIRTY.")
                     else:
-                        print("Checkout cancelled.")
+                        print("checkout cancelled.")
                         
                 except ValueError:
-                    print("Invalid number of days entered.")
+                    print("invalid number of days entered.")
             else:
-                print("This room is already empty.")
+                print("this room is already empty.")
         else:
-            print("Room does not exist.")
+            print("room does not exist.")
     except ValueError:
-        print("Invalid input.")
+        print("invalid input.")
 
 def housekeeping():
-    print("\n--- HOUSEKEEPING ---")
+    print("\n- HOUSEKEEPING -")
     dirty_rooms = []
     for r_num in hotel:
         if hotel[r_num]["cleanliness"] == "Dirty":
             dirty_rooms.append(r_num)
             
     if not dirty_rooms:
-        print("All rooms are clean!")
+        print("All rooms are clean")
         return
 
     print(f"Dirty Rooms: {dirty_rooms}")
     try:
-        room_to_clean = int(input("Enter Room Number to clean: "))
-        if room_to_clean in dirty_rooms:
-            hotel[room_to_clean]["cleanliness"] = "Clean"
-            print(f"Room {room_to_clean} is now CLEAN.")
+        roomnumber_clean = int(input("Enter Room Number to clean: "))
+        if roomnumber_clean in dirty_rooms:
+            hotel[roomnumber_clean]["cleanliness"] = "Clean"
+            print(f"Room {roomnumber_clean} is now CLEAN.")
         else:
-            print("Room is not in the dirty list.")
+            print("room is not in the dirty list.")
     except ValueError:
-        print("Invalid input.")
+        print("invalid input.")
 
 def guest_details():
-    print("\n--- ROOM DETAILS ---")
+    print("\n- room details -")
     try:
-        room_num = int(input("Enter Room Number: "))
+        room_num = int(input("enter Room Number: "))
         if room_num in hotel:
             room = hotel[room_num]
-            print(f"\n[Room {room_num}]")
-            print(f"Type: {room['type']}")
-            print(f"Rate: Rs. {room_prices[room['type']]}/day")
-            print(f"Status: {room['status']}")
-            print(f"Condition: {room['cleanliness']}")
+            print(f"\n[room {room_num}]")
+
+            print(f"type: {room['type']}")
+
+
+            print(f"rate: Rs. {room_prices[room['type']]}/day")
+            print(f"status: {room['status']}")
+            print(f"condition: {room['cleanliness']}")
             
             if room['status'] == "Occupied":
                 print(f"Guest: {room['guest']['name']}")
                 print(f"Phone: {room['guest']['phone']}")
         else:
-            print("Room not found.")
+            print("room not found.")
     except ValueError:
-        print("Invalid number.")
+        print("invalid number.")
 
-# --- MAin function loop ---
+#  main function loop
 def main():
     while True:
-        print("\n=== HOTEL MANAGEMENT SYSTEM ===")
-        print("1 = View Status Log")
-        print("2 = Check-In")
-        print("3 = Check-Out (Calculate Bill)")
-        print("4 = Housekeeping")
-        print("5 = Search Room")
-        print("6 = Exit")
+        print("\n= HOTEL MANAGEMENT SYSTEM =")
+
+        print("1 = view status log")
+
+        print("2 = check-in")
+
+
+        print("3 = check-out (calculate bill)")
+        print("4 = housekeeping")
+        print("5 = search room")
+        print("6 = exit")
         
-        choice = input("Enter choice: ")
+        choice = input("enter choice: ")
+
+
+
+
         
         if choice == '1':
             view_stats()
